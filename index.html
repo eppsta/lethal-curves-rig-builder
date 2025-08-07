@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lethal Curves - Modular Rig Deform Builder</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+  <div class="container">
+    <h1>Lethal Curves - Modular Rig Deform Builder </h1>
+    <p class="subtitle">
+      Customize Fem V’s proportions and get the matching archive <b>filename</b> for installation.
+    </p>
+    
+       
+    
+    
+    <div class="main-columns">
+      <!-- === Left Column === -->
+      <div class="left-column">
+
+        <!-- Archive Filename -->
+        <div class="output">
+          <h2>Archive Filename</h2>
+          <label for="archiveInput"></label>
+          <div class="filename-output">
+            <code id="archiveName"></code>
+            <input type="text" id="archiveInput" readonly>
+            <button id="copyBtn">Copy</button>
+          </div>
+        </div> 
+    
+        <!-- Rig Variant -->
+        <div class="variant-selectors">
+          <h2>Rig Variant</h2>
+          <div class="variant-group">
+            <label for="framework">Unique Framework:</label>
+            <select id="framework">
+              <option value="UV">Unique V</option>
+              <option value="Panam" disabled>Unique Panam (coming soon)</option>
+              <option value="Judy" disabled>Unique Judy (coming soon)</option>
+              <option value="Evelyn" disabled>Unique Evelyn (coming soon)</option>
+              <option value="Global">None</option>
+            </select>
+          </div>
+          <div class="variant-group">
+            <label for="tpp">TPP Support:</label>
+            <select id="tpp">
+              <option value="">None</option>
+              <option value="TPP">TPP</option>
+              <option value="TPP_RR">TPP + Ride-Ready Glutes</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Body Region Sliders -->
+        <div class="config">
+          <h2>Body Region Configuration</h2>
+          <div class="selectors">
+            <div class="slider-row">
+              <span class="region-label">Chest</span>
+              <div class="slider" data-region="chest">
+                <button class="decrease">◀</button>
+                <span class="value">0</span>
+                <button class="increase">▶</button>
+              </div>
+            </div>
+            <div class="slider-row">
+              <span class="region-label">Arms</span>
+              <div class="slider" data-region="arms">
+                <button class="decrease">◀</button>
+                <span class="value">0</span>
+                <button class="increase">▶</button>
+              </div>
+            </div>
+            <div class="slider-row">
+              <span class="region-label">Buttocks</span>
+              <div class="slider" data-region="buttocks">
+                <button class="decrease">◀</button>
+                <span class="value">0</span>
+                <button class="increase">▶</button>
+              </div>
+            </div>
+            <div class="slider-row">
+              <span class="region-label">Upper Thighs</span>
+              <div class="slider" data-region="upper_thighs">
+                <button class="decrease">◀</button>
+                <span class="value">0</span>
+                <button class="increase">▶</button>
+              </div>
+            </div>
+            <div class="slider-row">
+              <span class="region-label">Lower Thighs</span>
+              <div class="slider" data-region="lower_thighs">
+                <button class="decrease">◀</button>
+                <span class="value">0</span>
+                <button class="increase">▶</button>
+              </div>
+            </div>
+            <div class="slider-row">
+              <span class="region-label">Calves</span>
+              <div class="slider" data-region="calves">
+                <button class="decrease">◀</button>
+                <span class="value">0</span>
+                <button class="increase">▶</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- === Right Column === -->
+      <div class="right-column">
+
+        <div class="angle-switcher">
+          <button id="anglePrev">
+            <span class="material-symbols-outlined flip-horizontal">360</span>
+          </button>
+          
+          <span id="angleLabel" style="display:none"></span>
+
+          <div class="preview-wrapper">
+            <img id="previewImage" src="" alt="Preview" />
+          </div>
+
+          <button id="angleNext">
+            <span class="material-symbols-outlined">360</span>
+          </button>
+
+        </div>
+        
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
+

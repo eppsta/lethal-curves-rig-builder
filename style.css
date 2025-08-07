@@ -1,0 +1,244 @@
+/* === Base Styles === */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+/* === Typography === */
+h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #aaaaaa;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+p {
+  font-size: .5rem;
+}
+
+
+/* === Archive Filename === */
+
+.output h2 {
+  margin-bottom: 0.5rem;
+}
+
+.filename-output {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filename-output code {
+  font-family: monospace;
+  background: #1a1a1a;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  height: 21px;
+}
+
+#archiveInput {
+  position: absolute;
+  left: -9999px;
+  pointer-events: none; /* optional safety */
+}
+
+#copyBtn {
+  padding: 0.3rem 0.75rem;
+  background-color: #2e2e2e;
+  color: #e0e0e0;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#copyBtn:hover {
+  background-color: #3a3a3a;
+}
+
+
+/* === Main 2-Column Layout === */
+.main-columns {
+  display: flex;
+  margin-top: 2rem;
+  gap: 2rem;
+  width: 100%;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  width: 375px;
+  min-width: 375px;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.right-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* === Variant Selectors and Output === */
+.variant-selectors{
+  width: 300px;
+}
+
+.selections{
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+}
+
+.variant-selectors .variant-group {
+  margin-bottom: 1rem;
+}
+
+.variant-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+select {
+  width: 100%;
+  padding: 0.3rem;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/* === Sliders === */
+.config {
+  width: 300px;
+  margin-bottom: 4rem;
+}
+
+.config h2 {
+  margin-bottom: 1rem;
+}
+
+.selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* NEW: Slider Row for Label + Slider Alignment */
+.slider-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.region-label {
+  width: 190px;
+  text-align: left;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* UPDATED: slider now only takes half the row */
+.slider {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slider span.value {
+  width: 2ch;
+  text-align: center;
+  font-weight: bold;
+}
+
+.slider button {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
+
+.slider button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* === Preview Section === */
+
+
+#previewImage {
+  max-width: 100%;
+  max-height: 700px; /* or whatever fits nicely within your container */
+  border: 1px solid #333;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.angle-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 0;
+}
+
+.angle-switcher button {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+}
+
+.angle-switcher span {
+  font-weight: bold;
+}
+
+.flip-horizontal {
+  transform: scaleX(-1);
+  display: inline-block; /* Required to allow transform to apply properly */
+}
+
+/* === Responsive (optional) === */
+@media (max-width: 768px) {
+  .main-columns {
+    flex-direction: column;
+  }
+}
+
+.material-symbols-outlined {
+  vertical-align: middle;
+}
+
+
+.filename-output code em {
+  color: #aaa;
+  font-style: italic;
+}
