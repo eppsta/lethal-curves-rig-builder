@@ -201,23 +201,37 @@ select {
 .right-column .variant-selectors h2 {
   text-align: center;
   width: 100%;
+  margin-bottom: .5rem;
 }
 
 .bodymod-pills {
   display: flex;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  margin-bottom: .5rem;
 }
+
 .bodymod-pills button {
   padding: 0.4rem 0.8rem;
   border: 1px solid #444;
-  border-radius: 9999px; /* pill shape */
+  border-radius: 3px; /* pill shape */
   background: #1e1e1e;
   color: #e0e0e0;
   cursor: pointer;
 }
+
+.bodymod-pills button:is(:hover, :focus-visible) {
+  outline: none;
+  border-color: #666;
+  background: #242424;
+}
+
 .bodymod-pills button.active {
   background: #444;
-  font-weight: bold;
+  border-color: #777;
+  /* optional stronger focus ring instead of bold jump */
+  box-shadow: 0 0 0 2px #666 inset;
 }
 
 #previewImage {
@@ -227,7 +241,6 @@ select {
   border-radius: 8px;
   object-fit: contain;
 }
-
 
 
 /* Make the preview flex to available space without overlapping buttons */

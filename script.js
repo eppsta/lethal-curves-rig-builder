@@ -46,6 +46,8 @@ if (bodyModButtons.length > 0) {
   });
 }
 
+
+
 // === Initialize Sliders ===
 document.querySelectorAll(".slider").forEach(slider => {
   const region = slider.dataset.region;
