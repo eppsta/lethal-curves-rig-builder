@@ -312,9 +312,12 @@ select {
   }
   .output{
   max-width: none;
-
-
+  }
+  .angle-switcher button {
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
 }
+
 }
 
 .material-symbols-outlined {
