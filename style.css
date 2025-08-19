@@ -55,8 +55,29 @@ p {
   background: #1a1a1a;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
-  height: 21px;
+  height: 25px;
+  overflow-x: auto;
+  white-space: nowrap;
+  overflow-y: hidden;
+  max-width: 100%;
+  display: inline-block;
+  scrollbar-width: thin;           
+  scrollbar-color: #555 transparent;
+
 }
+
+/* WebKit (Chrome, Edge, Safari) */
+.filename-output code::-webkit-scrollbar {
+  height: 6px;  /* horizontal bar thickness */
+}
+.filename-output code::-webkit-scrollbar-track {
+  background: transparent;
+}
+.filename-output code::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 3px;
+}
+
 
 #archiveInput {
   position: absolute;
