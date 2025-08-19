@@ -22,9 +22,10 @@ h1 {
 }
 
 .subtitle {
+  margin-top: 0;
+  margin-bottom: 3rem;
   font-size: 1rem;
   color: #aaaaaa;
-  margin-bottom: 1rem;
 }
 
 h2 {
@@ -38,19 +39,22 @@ p {
 
 
 /* === Archive Filename === */
+.output{
+  max-width: 341.5px;
+}
 
 .output h2 {
   margin-bottom: 0.5rem;
 }
-
 .filename-output {
-  position: relative;
+  width: 100%;   
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .filename-output code {
+  width: 100%;
   font-family: monospace;
   background: #1a1a1a;
   padding: 0.2rem 0.4rem;
@@ -59,8 +63,6 @@ p {
   overflow-x: auto;
   white-space: nowrap;
   overflow-y: hidden;
-  max-width: 100%;
-  display: inline-block;
   scrollbar-width: thin;           
   scrollbar-color: #555 transparent;
 
@@ -103,17 +105,16 @@ p {
 .main-columns {
   display: flex;
   margin-top: 2rem;
-  gap: 2rem;
+  gap: 5rem;
   width: 100%;
 }
 
 .left-column {
   display: flex;
   flex-direction: column;
-  width: 375px;
-  min-width: 375px;
-  justify-content: space-between;
   gap: 2rem;
+  margin-bottom: 3rem;
+  min-width: 225px;
 }
 
 .right-column {
@@ -124,9 +125,7 @@ p {
 
 
 /* === Variant Selectors and Output === */
-.variant-selectors{
-  width: 300px;
-}
+
 
 .selections{
   display: flex;
@@ -155,11 +154,8 @@ select {
 }
 
 
-/* === Sliders === */
-.config {
-  width: 300px;
-  margin-bottom: 3rem;
-}
+/* === Body Region Configuration === */
+
 
 .config h2 {
   margin-bottom: 1rem;
@@ -172,6 +168,8 @@ select {
 }
 
 /* NEW: Slider Row for Label + Slider Alignment */
+
+
 .slider-row {
   display: flex;
   width: 100%;
@@ -215,6 +213,7 @@ select {
 .right-column .variant-selectors {
   width: auto;
 }
+
 .right-column .variant-selectors select {
   min-width: 11rem;
 }
@@ -301,12 +300,21 @@ select {
 }
 
 /* === Responsive (optional) === */
-@media (max-width: 768px) {
+@media (max-width: 710px) {
   .pill { padding: .35rem .7rem;
   }
   .main-columns {
     flex-direction: column;
+    gap: 3rem;
   }
+  .left-column{
+    margin-bottom: 0;
+  }
+  .output{
+  max-width: none;
+
+
+}
 }
 
 .material-symbols-outlined {
@@ -317,4 +325,5 @@ select {
 .filename-output code em {
   color: #aaa;
   font-style: italic;
+  
 }
