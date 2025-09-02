@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lethal Curves - Modular Rig Deform Builder</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 <body>
   <div class="container">
-    <h1>Lethal Curves - Modular Rig Deform Builder </h1>
+    <h1>Lethal Curves - Modular Rig Deform Builder</h1>
     <p class="subtitle">
       Customize Fem V’s proportions and get the matching archive <b>filename</b> for installation.
     </p>
@@ -24,10 +23,8 @@
         <!-- Archive Filename -->
         <div class="output">
           <h2>Archive Filename</h2>
-          <label for="archiveInput"></label>
           <div class="filename-output">
             <code id="archiveName"></code>
-            <input type="text" id="archiveInput" readonly>
             <button id="copyBtn">Copy</button>
           </div>
         </div> 
@@ -133,20 +130,17 @@
         </div>
 
         <div class="angle-switcher">
-          <button id="anglePrev">
-            <span class="material-symbols-outlined flip-horizontal">360</span>
+          <button id="anglePrev" aria-label="Previous angle" class="flip-horizontal">
+            <img src="assets/icons/360.svg" alt="Rotate Left" width="24" height="24">
           </button>
-          
-          <span id="angleLabel" style="display:none"></span>
 
           <div class="preview-wrapper">
             <img id="previewImage" src="" alt="Preview" />
           </div>
 
-          <button id="angleNext">
-            <span class="material-symbols-outlined">360</span>
+          <button id="angleNext" aria-label="Next angle">
+            <img src="assets/icons/360.svg" alt="Rotate Right" width="24" height="24">
           </button>
-
         </div>
         
       </div>
@@ -154,9 +148,11 @@
 
     
   </div>
+  <footer style="margin-top: 4rem; font-size: 0.75rem; text-align: center; color: #666;">
+  Local Build v1.0
+</footer>
   <script src="script.js"></script>
-  <script data-goatcounter="https://eppsta.goatcounter.com/count"
-        async src="https://gc.zgo.at/count.js"></script>
+
 </body>
 </html>
 

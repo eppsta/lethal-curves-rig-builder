@@ -82,12 +82,6 @@ p {
 }
 
 
-#archiveInput {
-  position: absolute;
-  left: -9999px;
-  pointer-events: none; /* optional safety */
-}
-
 #copyBtn {
   padding: 0.3rem 0.75rem;
   background-color: #2e2e2e;
@@ -319,10 +313,6 @@ select {
   padding: 0.15rem 0.4rem;
 }
 
-}
-
-.material-symbols-outlined {
-  vertical-align: middle;
 }
 
 

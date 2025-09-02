@@ -6,16 +6,6 @@ const step = 1;
 // === Angle Control ===
 let currentAngleIndex = 7;
 const angles = ["000", "045", "090", "135", "180", "225", "270", "315"];
-const prettyAngleLabel = {
-  "000": "Front",
-  "045": "Front-Side",
-  "090": "Side",
-  "135": "Back-Side",
-  "180": "Back",
-  "225": "Back-Side",
-  "270": "Side",
-  "315": "Front-Side"
-};
 
 // === Track current slider values ===
 const values = { chest: 0, arms: 0, buttocks: 0, upper_thighs: 0, lower_thighs: 0, calves: 0 };
@@ -71,7 +61,7 @@ document.querySelectorAll(".slider").forEach(slider => {
 
 // === Helpers for images ===
 function imageBase(suffix, angle) {
-  return `images/${currentBodyMod}/LC_MDX_${suffix}_${angle}`;
+  return `assets/images/${currentBodyMod}/LC_MDX_${suffix}_${angle}`;
 }
 
 function setPreviewWithFallback(base) {
@@ -95,7 +85,6 @@ function updateArchiveAndPreview() {
   const variant = [framework, tpp].filter(Boolean).join("_");
   const filename = `004_LethalCurves_${variant}__MDX_${suffix}`;
 
-  document.getElementById("angleLabel").textContent = prettyAngleLabel[angle];
   const base = imageBase(suffix, angle);
   setPreviewWithFallback(base);
 
@@ -114,7 +103,26 @@ copyBtn.addEventListener("click", () => {
   navigator.clipboard.writeText(text).then(() => {
     copyBtn.textContent = "Copied!";
     setTimeout(() => (copyBtn.textContent = "Copy"), 1000);
-  }).catch(() => alert("Copy failed. Please copy manually."));
+  }).catch(() => {
+    // Fallback method using a hidden textarea
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed"; // prevent scrolling to bottom
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+
+    try {
+      document.execCommand("copy");
+    } catch (e) {
+      console.error("Fallback copy failed", e);
+    }
+
+    document.body.removeChild(ta);
+
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => (copyBtn.textContent = "Copy"), 1000);
+  });
 });
 
 // === Angle Button Handlers ===
