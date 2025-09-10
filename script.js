@@ -12,7 +12,7 @@ const values = { chest: 0, arms: 0, buttocks: 0, upper_thighs: 0, lower_thighs: 
 
 // === DOM References ===
 const archiveOut = document.getElementById("archiveName");
-const previewImg = document.getElementById("previewImage");
+const previewSprite = document.getElementById("previewSprite");
 const frameworkSelect = document.getElementById("framework");
 const tppSelect = document.getElementById("tpp");
 
@@ -20,7 +20,6 @@ const tppSelect = document.getElementById("tpp");
 const bodyModButtons = document.querySelectorAll("[data-bodymod]");
 let currentBodyMod = localStorage.getItem("lc_body_mod") || "solo";
 
-// Mark the active pill on load
 function setActiveBodyMod(mod) {
   currentBodyMod = mod;
   localStorage.setItem("lc_body_mod", mod);
@@ -28,15 +27,12 @@ function setActiveBodyMod(mod) {
   updateArchiveAndPreview();
 }
 
-// Add listeners if pills exist
 if (bodyModButtons.length > 0) {
-  setActiveBodyMod(currentBodyMod); // restore from localStorage
+  setActiveBodyMod(currentBodyMod);
   bodyModButtons.forEach(btn => {
     btn.addEventListener("click", () => setActiveBodyMod(btn.dataset.bodymod));
   });
 }
-
-
 
 // === Initialize Sliders ===
 document.querySelectorAll(".slider").forEach(slider => {
@@ -59,37 +55,54 @@ document.querySelectorAll(".slider").forEach(slider => {
   setValue(values[region]);
 });
 
-// === Helpers for images ===
-function imageBase(suffix, angle) {
-  return `assets/images/${currentBodyMod}/LC_MDX_${suffix}_${angle}`;
+// === Angle frame helper ===
+function setAtlasFrame(index) {
+  const cols = 4, rows = 2;
+  const col = index % cols;
+  const row = Math.floor(index / cols);
+
+  const x = (col / (cols - 1)) * 100;
+  const y = (row / (rows - 1)) * 100;
+
+  previewSprite.style.backgroundPosition = `${x}% ${y}%`;
 }
 
-function setPreviewWithFallback(base) {
-  previewImg.onerror = () => {
-    previewImg.onerror = null; // prevent infinite loop
-    if (currentBodyMod !== "solo") {
-      setActiveBodyMod("solo");
-      previewImg.src = `${base.replace(`/${currentBodyMod}/`, "/solo/")}.webp`;
-    }
-  };
-  previewImg.src = `${base}.webp`;
+// === Preload helper ===
+function preloadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(src);
+    img.onerror = reject;
+    img.src = src;
+  });
 }
 
-// === Archive Filename + Image Updater ===
-function updateArchiveAndPreview() {
+// === Archive Filename + Sprite Updater ===
+async function updateArchiveAndPreview() {
   const suffix = Object.values(values).join("_");
   const allZero = Object.values(values).every(v => v === 0);
-  const angle = angles[currentAngleIndex];
   const framework = frameworkSelect.value;
   const tpp = tppSelect.value;
   const variant = [framework, tpp].filter(Boolean).join("_");
   const filename = `004_LethalCurves_${variant}__MDX_${suffix}`;
 
-  const base = imageBase(suffix, angle);
-  setPreviewWithFallback(base);
+  const atlasPath = `assets/images/${currentBodyMod}/LC_MDX_${suffix}.webp`;
 
-  archiveOut.innerHTML = allZero ? "<em>Adjust a body region to view filename</em>"
-                                 : filename + ".archive";
+  if (previewSprite.dataset.currentSrc !== atlasPath) {
+    try {
+      await preloadImage(atlasPath);
+      previewSprite.style.backgroundImage = `url("${atlasPath}")`;
+      previewSprite.dataset.currentSrc = atlasPath;
+    } catch (e) {
+      console.warn("Failed to load atlas:", atlasPath, e);
+    }
+  }
+
+  setAtlasFrame(currentAngleIndex);
+
+  archiveOut.innerHTML = allZero
+    ? "<em>Adjust a body region to view filename</em>"
+    : filename + ".archive";
 }
 
 // === Dropdown Handlers ===
@@ -104,22 +117,14 @@ copyBtn.addEventListener("click", () => {
     copyBtn.textContent = "Copied!";
     setTimeout(() => (copyBtn.textContent = "Copy"), 1000);
   }).catch(() => {
-    // Fallback method using a hidden textarea
     const ta = document.createElement("textarea");
     ta.value = text;
-    ta.style.position = "fixed"; // prevent scrolling to bottom
+    ta.style.position = "fixed";
     ta.style.opacity = "0";
     document.body.appendChild(ta);
     ta.select();
-
-    try {
-      document.execCommand("copy");
-    } catch (e) {
-      console.error("Fallback copy failed", e);
-    }
-
+    try { document.execCommand("copy"); } catch {}
     document.body.removeChild(ta);
-
     copyBtn.textContent = "Copied!";
     setTimeout(() => (copyBtn.textContent = "Copy"), 1000);
   });
@@ -128,11 +133,11 @@ copyBtn.addEventListener("click", () => {
 // === Angle Button Handlers ===
 document.getElementById("anglePrev").addEventListener("click", () => {
   currentAngleIndex = (currentAngleIndex - 1 + angles.length) % angles.length;
-  updateArchiveAndPreview();
+  setAtlasFrame(currentAngleIndex);
 });
 document.getElementById("angleNext").addEventListener("click", () => {
   currentAngleIndex = (currentAngleIndex + 1) % angles.length;
-  updateArchiveAndPreview();
+  setAtlasFrame(currentAngleIndex);
 });
 
 // Initial render

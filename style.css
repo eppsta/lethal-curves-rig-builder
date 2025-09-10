@@ -107,6 +107,7 @@ p {
 .left-column {
   display: flex;
   flex-direction: column;
+  flex: 0 0 35.6%;
   gap: 2rem;
   margin-bottom: 3rem;
   min-width: 225px;
@@ -116,6 +117,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
 }
 
 
@@ -249,12 +251,18 @@ select {
   box-shadow: 0 0 0 2px #666 inset;
 }
 
-#previewImage {
-  max-width: 100%;
-  max-height: 700px; /* or whatever fits nicely within your container */
+
+#previewSprite {
+  width: 100%;
+  height: auto;             /* allow width to decide */
+  aspect-ratio: 9 / 16;     /* preserve frame shape */
   border: 1px solid #333;
   border-radius: 8px;
-  object-fit: contain;
+
+  background-repeat: no-repeat;
+  background-size: 400% 200%;
+  background-position: 0% 0%;
+  background-color: #000;
 }
 
 
