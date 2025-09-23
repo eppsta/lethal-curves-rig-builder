@@ -106,8 +106,33 @@ async function updateArchiveAndPreview() {
 }
 
 // === Dropdown Handlers ===
-frameworkSelect.addEventListener("change", updateArchiveAndPreview);
+frameworkSelect.addEventListener("change", () => {
+  const value = frameworkSelect.value;
+
+  if (value !== "UV" && value !== "Global") {
+    // Reset TPP to None
+    tppSelect.value = "";
+
+    // Disable all except None
+    for (const opt of tppSelect.options) {
+      if (opt.value === "") {
+        opt.disabled = false;
+      } else {
+        opt.disabled = true;
+      }
+    }
+  } else {
+    // Re-enable all TPP options
+    for (const opt of tppSelect.options) {
+      opt.disabled = false;
+    }
+  }
+
+  updateArchiveAndPreview();
+});
+
 tppSelect.addEventListener("change", updateArchiveAndPreview);
+
 
 // === Copy to Clipboard ===
 const copyBtn = document.getElementById("copyBtn");
@@ -129,6 +154,7 @@ copyBtn.addEventListener("click", () => {
     setTimeout(() => (copyBtn.textContent = "Copy"), 1000);
   });
 });
+
 
 // === Angle Button Handlers ===
 document.getElementById("anglePrev").addEventListener("click", () => {
