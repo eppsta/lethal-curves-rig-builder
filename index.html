@@ -10,7 +10,7 @@
   <div class="container">
     <h1>Lethal Curves - Modular Rig Deform Builder</h1>
     <p class="subtitle">
-      Customize Fem V’s proportions and get the matching archive <b>filename</b> for installation.
+      Customize Fem V’s proportions and get the matching <b>archive filename</b> for installation.
     </p>
     
        
@@ -57,11 +57,14 @@
 
         <!-- Body Region Sliders -->
         <div class="config">
-          <h2>Body Configuration</h2>
+          <h2>Body Region Configuration</h2>
           <div class="selectors">
             <div class="slider-row">
               <span class="region-label">Chest</span>
               <div class="slider" data-region="chest">
+                <button class="precision-toggle" aria-pressed="false">
+                  ±0.5
+                </button>
                 <button class="decrease">◀</button>
                 <span class="value">0</span>
                 <button class="increase">▶</button>
@@ -78,6 +81,9 @@
             <div class="slider-row">
               <span class="region-label">Buttocks</span>
               <div class="slider" data-region="buttocks">
+                <button class="precision-toggle" aria-pressed="false">
+                  ±0.5
+                </button>
                 <button class="decrease">◀</button>
                 <span class="value">0</span>
                 <button class="increase">▶</button>
@@ -117,7 +123,7 @@
 
         <!-- Body Mod -->
         <div class="variant-selectors">
-          <h2>Body Mod</h2>
+          <h2>Body Mod Preview</h2>
           <div class="bodymod-pills">
             <button data-bodymod="solo">Solo</button>
             <button data-bodymod="angel">Angel</button>
